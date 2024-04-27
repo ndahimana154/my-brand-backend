@@ -6,8 +6,9 @@ import Blog from "../../../database/models/BlogsModel";
 // Post blog
 const postBlog = async (req: Request, res: Response) => {
   try {
-    const cover: any = req.file?.filename;
     const { title, summary, article } = req.body;
+    const cover = (req as any).file.filename; // Use the generated filename from the file object
+
     const newBlog = await blogRepository.postBlog({
       title,
       summary,
@@ -17,14 +18,14 @@ const postBlog = async (req: Request, res: Response) => {
 
     res.status(201).json({
       success: true,
-      message: "Blog is posted  successfully",
+      message: "Blog is posted successfully",
       newBlog,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
       success: false,
-      message: "An error occured while posting blog",
+      message: "An error occurred while posting the blog",
     });
   }
 };
@@ -73,4 +74,28 @@ const getBlogById = async (req: Request, res: Response) => {
   }
 };
 
-export default { postBlog, getBlogs, getBlogById };
+const deleteBlog = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Invalid Blog ID" });
+  }
+  try {
+    const isDeleted = await blogRepository.deleteBlogById(id);
+    if (!isDeleted) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Blog was not found" });
+    }
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while deleting blog",
+    });
+  }
+};
+
+export default { postBlog, getBlogs, getBlogById, deleteBlog };

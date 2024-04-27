@@ -27,6 +27,10 @@ const getBlogById = async (id: string) => {
   return Blog.findById(id); // Pass the ID directly as a string
 };
 
-export default { postBlog, getBlogs, 
-    getBlogById 
+// Delete blog by ID
+const deleteBlogById = async (id: string) => {
+  return await Blog.findOneAndDelete({_id: id})?true:false;
 };
+
+export default { postBlog, getBlogs, getBlogById,deleteBlogById };
+    

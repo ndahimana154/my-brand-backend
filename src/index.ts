@@ -17,6 +17,12 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
+// Serve static files from the "uploads" directory
+app.use(express.static(path.join(__dirname, "uploads/blogs")));
+
+
+
+
 // // Assuming your images are stored in a directory named 'images' within your project root
 // app.use('/uploads/blogs/', express.static(path.join(__dirname, 'images')));
 
