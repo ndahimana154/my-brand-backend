@@ -1,5 +1,4 @@
 import express from "express";
-import multer from "multer";
 
 
 import blogsController from "../modules/blogs/controller/blogController";

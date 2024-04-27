@@ -13,7 +13,7 @@ const postBlog = async (req: Request, res: Response) => {
       title,
       summary,
       cover,
-      article,
+      article
     });
 
     res.status(201).json({
