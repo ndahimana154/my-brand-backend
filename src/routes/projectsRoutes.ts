@@ -10,6 +10,6 @@ projectsRouter.post("/",uploadProjetImage.single("image"), projectsController.po
 // Get all projects route
 projectsRouter.get("/", projectsController.getAllProjects);
 // Delete Project
-projectsRouter.delete("/",projectsController.deleteProject);
+projectsRouter.delete("/:id",projectsController.deleteProject);
 // 
 export default projectsRouter;

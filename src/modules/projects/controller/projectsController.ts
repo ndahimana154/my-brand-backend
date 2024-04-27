@@ -1,4 +1,5 @@
 import exress, { Request, Response } from "express";
+import mongoose from "mongoose";
 import projectsRepository from "../repository/projectsRepository";
 
 // Post project
@@ -51,6 +52,12 @@ const getAllProjects = async (req: Request, res: Response) => {
 // Delete project
 const deleteProject = async (req: Request, res: Response) => {
   const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(400).json({
+      success: false,
+      message: `Invalid Projct ID`,
+    });
+  }
   try {
     const isDeleted = await projectsRepository.deleteProjectFx(id);
     if (!isDeleted) {

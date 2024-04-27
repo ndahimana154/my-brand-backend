@@ -1,24 +1,15 @@
+import { Request } from "express";
 import multer from "multer";
-import fs from "fs";
+import path from "path";
 
-const storage = multer.diskStorage({
-  destination: function (_req, _file, cb) {
-    const uploadDir = "./uploads/blogs";
-
-    // Check if the directory exists, if not, create it
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
+export default multer({
+    storage: multer.diskStorage({}),
+    fileFilter: (req: Request, file: Express.Multer.File, cb) => {
+        let ext = path.extname(file.originalname);
+        if(ext!== '.png' && ext!== '.jpg' && ext!== '.jpeg'){
+            return cb(new Error('Only images are allowed'));
+        }
+        cb(null,true);
+        req
     }
-
-    cb(null, uploadDir);
-  },
-  filename: function (_req, _file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const filename = `${uniqueSuffix}.jpeg`;
-    cb(null, filename);
-  },
 });
-
-const upload = multer({ storage });
-
-export default upload;

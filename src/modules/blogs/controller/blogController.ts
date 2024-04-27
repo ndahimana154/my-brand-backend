@@ -1,37 +1,11 @@
-import { Request, Response } from "express";
+import mongoose from "mongoose";
+import {Express,Request,Response} from "express"
 import blogRepository from "../repository/blogRepository";
-import mongoose, { mongo } from "mongoose";
-import Blog from "../../../database/models/BlogsModel";
 
-// Post blog
-const postBlog = async (req: Request, res: Response) => {
-  try {
-    const { title, summary, article } = req.body;
-    const cover = (req as any).file.filename; // Use the generated filename from the file object
+const postBlog =async (req:Request,res:Response)=> {}
 
-    const newBlog = await blogRepository.postBlog({
-      title,
-      summary,
-      cover,
-      article
-    });
-
-    res.status(201).json({
-      success: true,
-      message: "Blog is posted successfully",
-      newBlog,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: "An error occurred while posting the blog",
-    });
-  }
-};
-
-// Get alll blogs
-const getBlogs = async (req: Request, res: Response) => {
+// Get all blogs
+const getBlogs = async (req: Request, res: Response): Promise<void> => {
   try {
     const blogs = await blogRepository.getBlogs();
     res.status(200).json({ success: true, data: blogs });
@@ -39,61 +13,54 @@ const getBlogs = async (req: Request, res: Response) => {
     console.error(error);
     res.status(500).json({
       success: false,
-      message: "An error occured while fetching blog",
+      message: "An error occurred while fetching blogs",
     });
   }
 };
+
 // Get a single blog
-const getBlogById = async (req: Request, res: Response) => {
+const getBlogById = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res
-      .status(404)
-      .json({ success: false, message: "Blog is not found" });
+    res.status(404).json({ success: false, message: "Invalid Blog ID" });
+    return; // Return here to exit the function early
   }
   try {
     // Now, use blogId for querying the database
-    // const blog = await Blog.findById(id);
     const blog = await blogRepository.getBlogById(id);
     if (!blog) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Blog was not found" });
+      res.status(404).json({ success: false, message: "Blog not found" });
+      return; // Return here to exit the function early
     }
-
-    // Return the blog data with a status of 200 (OK)
     res.status(200).json({ success: true, data: blog });
   } catch (error) {
     console.error(error);
-
-    // If an error occurs during the database operation, return a 500 (Internal Server Error) status
     res.status(500).json({
       success: false,
-      message: "An error occurred while fetching blog",
+      message: "An error occurred while fetching the blog",
     });
   }
 };
 
-const deleteBlog = async (req: Request, res: Response) => {
+// Delete a blog
+const deleteBlog = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res
-      .status(404)
-      .json({ success: false, message: "Invalid Blog ID" });
+    res.status(404).json({ success: false, message: "Invalid Blog ID" });
+    return; // Return here to exit the function early
   }
   try {
     const isDeleted = await blogRepository.deleteBlogById(id);
     if (!isDeleted) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Blog was not found" });
+      res.status(404).json({ success: false, message: "Blog not found" });
+      return; // Return here to exit the function early
     }
     res.status(200).json({ success: true });
   } catch (error) {
     console.error(error);
     res.status(500).json({
       success: false,
-      message: "An error occurred while deleting blog",
+      message: "An error occurred while deleting the blog",
     });
   }
 };

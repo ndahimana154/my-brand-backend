@@ -6,7 +6,7 @@ import uploadBlogCover from "../middlewares/uploadBlogMiddleware";
 const blogsRouter = express.Router();  
 
 // Post blog
-blogsRouter.post("/", uploadBlogCover.single("cover"), blogsController.postBlog);
+blogsRouter.post("/", blogsController.postBlog);
 // Get blogs
 blogsRouter.get("/", blogsController.getBlogs);
 // Get a single blog

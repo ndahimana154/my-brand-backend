@@ -13,17 +13,16 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  article: { 
+  article: {
     type: String,
     required: true,
   },
   postedAt: {
     type: Date,
     default: Date.now,
-  },
+  }
 });
 
+const Blog = mongoose.model("Blog", blogSchema);
 
-const Blog = mongoose.model("Blog",blogSchema)
-
-export default Blog
+export default Blog;
