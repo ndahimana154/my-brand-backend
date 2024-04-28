@@ -18,7 +18,6 @@ const postMessage = async (req: Request, res: Response) => {
       message: "Message sent successfully",
       newMessage,
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -27,5 +26,37 @@ const postMessage = async (req: Request, res: Response) => {
     });
   }
 };
+const getBrandMessages = async (req: Request, res: Response) => {
+  try {
+    const messagesData = await messageRepository.getMessages();
+    if (!messagesData) {
+      return res
+        .status(404)
+        .json({ success: false, message: "No messages found!" });
+    }
+    res
+      .status(200)
+      .json({ success: true, message: "Messages fetched", messagesData });
+  } catch (error) {
+    console.error("Error getting messages", error);
+    res.status(500).json({ success: false, message: "An error occured" });
+  }
+};
 
-export default { postMessage };
+// Delete message
+const deleteBrandMessage = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const isDeleted = await messageRepository.deleteMessageFx(id);
+    if (isDeleted) {
+      res.status(200).json({ success: true, message: "Message deleted successfully" });
+    } else {
+      res.status(404).json({ success: false, message: "Message not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Error occurred" });
+  }
+};
+
+export default { postMessage, getBrandMessages, deleteBrandMessage };

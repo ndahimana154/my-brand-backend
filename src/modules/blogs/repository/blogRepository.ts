@@ -19,7 +19,7 @@ const postBlog = async (blogData: {
 
 // Get all blogs
 const getBlogs = async () => {
-  return Blog.find().sort({ createdAt: -1 });
+  return Blog.find().sort({ postedAt: -1 });
 };
 
 // Get single blog
