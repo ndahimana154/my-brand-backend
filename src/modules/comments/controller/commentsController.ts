@@ -23,6 +23,22 @@ const postBlogComment = async (req: Request, res: Response) => {
     });
   }
 };
+
+const getBlogComments = async (req: Request, res: Response) => {
+  const { blogId } = req.params;
+  try {
+    const blogComments = await commentsRepository.getComments(blogId);
+    res
+      .status(200)
+      .json({ success: true, message: "Comments fetched", blogComments });
+  } catch (error) {
+    console.error("Error fetching comments", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching comments" });
+  }
+};
 export default {
   postBlogComment,
+  getBlogComments,
 };
