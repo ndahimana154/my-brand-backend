@@ -1,11 +1,12 @@
-import cloudinary from "./cloudinary";
+import { cloudinary } from "../utils/cloudinary";
+import path from "path";
 
-const uploadBlogImages = async (fileToUpload:any): Promise<{ public_id: string; secure_url: string }> => {
+const uploadImages = async (fileToUpload: any): Promise<{ public_id: string; secure_url: string }> => {
     try {
         if (!fileToUpload.path) {
             throw new Error("No file uploaded");
         }
-        const result = await cloudinary.uploader.upload(fileToUpload.path); // Upload image to Cloudinary
+        const result = await cloudinary.uploader.upload(fileToUpload?.path);
         return {
             public_id: result.public_id,
             secure_url: result.secure_url,
@@ -16,4 +17,4 @@ const uploadBlogImages = async (fileToUpload:any): Promise<{ public_id: string; 
     }
 };
 
-export default uploadBlogImages;
+export default uploadImages;

@@ -1,12 +1,23 @@
 import exress, { Request, Response } from "express";
 import mongoose from "mongoose";
 import projectsRepository from "../repository/projectsRepository";
+import uploadImages from "../../../middlewares/uploadBlog";
+import asyncHandler from "express-async-handler";
+
 
 // Post project
 const postProject = async (req: Request, res: Response) => {
   try {
+    if(!req.file) {
+     return  res.status(400).json({
+        success:false,
+        message: "Please upload an image"
+    });
+    }
+    const result = await uploadImages(req.file);
+    console.log(result)
     const { title, description, startTime, endTime, externalLink } = req.body;
-    const image = (req as any).file.filename;
+    const image = result?.secure_url
     const newProject = await projectsRepository.newProject({
       title,
       description,

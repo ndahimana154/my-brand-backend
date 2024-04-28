@@ -1,8 +1,44 @@
 import mongoose from "mongoose";
-import {Express,Request,Response} from "express"
+import { Request, Response } from "express";
 import blogRepository from "../repository/blogRepository";
+import { cloudinary } from "../../../utils/cloudinary";
 
-const postBlog =async (req:Request,res:Response)=> {}
+import uploadImages from "../../../middlewares/uploadBlog";
+import asyncHandler from "express-async-handler";
+
+const postBlog = asyncHandler(
+  async (req: Request, res: Response): Promise<void> => {
+    // TODO: Get the project detail from req.body
+    try {
+      if (!req.file) {
+        res.status(400).json({
+          success: false,
+          message: "Please upload an image",
+        });
+      }
+      const result = await uploadImages(req.file);
+      console.log(result);
+      const blogData = await blogRepository.postBlog({
+        title: req.body.title,
+        summary: req.body.summary,
+        cover: result?.secure_url,
+        article: req.body.article,
+      });
+
+      res.status(201).json({
+        success: true,
+        message: "Project is saved successfully.",
+        blogData,
+      });
+
+      console.log(blogData);
+    } catch (error) {
+      res.status(500).json({
+        message: "Internal server error",
+      });
+    }
+  }
+);
 
 // Get all blogs
 const getBlogs = async (req: Request, res: Response): Promise<void> => {
