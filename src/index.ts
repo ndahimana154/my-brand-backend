@@ -1,6 +1,4 @@
 import express, { Express, Request, Response, NextFunction } from "express";
-import mongoose from "mongoose";
-import router from "./routes";
 import cors from "cors";
 import path from "path";
 
@@ -37,4 +35,4 @@ import routes from "./routes/index";
 app.use(express.json());
 app.use("/api", routes);
 
-export default app;
+export default App;
