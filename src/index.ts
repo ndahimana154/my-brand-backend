@@ -35,4 +35,4 @@ import routes from "./routes/index";
 app.use(express.json());
 app.use("/api", routes);
 
-export default App;
+export default app;
