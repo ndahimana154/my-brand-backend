@@ -15,32 +15,32 @@ const postMessage = async (req: Request, res: Response) => {
     });
 
     // Define the main function
-    const main = async () => {
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false, // Use `true` for port 465, `false` for all other ports
-        auth: {
-          user: "ndahimana154@gmail.com",
-          pass: "8259 8873",
-        },
-      });
+    // const main = async () => {
+    //   const transporter = nodemailer.createTransport({
+    //     host: "smtp.gmail.com",
+    //     port: 587,
+    //     secure: false, // Use `true` for port 465, `false` for all other ports
+    //     auth: {
+    //       user: "ndahimana154@gmail.com",
+    //       pass: "8259 8873",
+    //     },
+    //   });
 
-      // send mail with defined transport object
-      const info = await transporter.sendMail({
-        from: '"Ndahimana Bonheur" <ndahimana154@gmail.com>', // sender address
-        to: email, // list of receivers
-        subject: "Thank you", // Subject line
-        text: `Hello ${firstname} thank you for contacting us.`, // plain text body
-        // html: "<b>Hello world?</b>", // html body
-      });
+    //   // send mail with defined transport object
+    //   const info = await transporter.sendMail({
+    //     from: '"Ndahimana Bonheur" <ndahimana154@gmail.com>', // sender address
+    //     to: email, // list of receivers
+    //     subject: "Thank you", // Subject line
+    //     text: `Hello ${firstname} thank you for contacting us.`, // plain text body
+    //     // html: "<b>Hello world?</b>", // html body
+    //   });
 
-      console.log("Message sent: %s", info.messageId);
+    //   console.log("Message sent: %s", info.messageId);
       // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
-    };
+    // };
 
     // Call the main function
-    await main();
+    // await main();
 
     res.status(201).json({
       success: true,
