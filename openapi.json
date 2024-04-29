@@ -1,0 +1,331 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "My Brand",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "localhost://"
+    },
+    {
+      "url": "http://localhost:3301"
+    },
+    {
+      "url": "http://localhost:3300"
+    }
+  ],
+  "paths": {
+    "/301/api/project/": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get projects",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/300/api/message": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Post a message",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "firstname": "ndahimana",
+                  "lastname": "bobo",
+                  "email": "nderuh@rsfs.rs",
+                  "message": "Hello there?"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/301/api/project": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Post project",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "divhsiuh"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "dfhuvgyg"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "startTime": {
+                    "type": "string",
+                    "example": "dfyuvfdhuyg"
+                  },
+                  "endTime": {
+                    "type": "string",
+                    "example": "fdivh"
+                  },
+                  "externalLink": {
+                    "type": "string",
+                    "example": "Link"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/300/api/user/new": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Creating User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "username": "ndahimana",
+                  "password": "1234"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/blog": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Admin - Post Blog",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Hello this is title"
+                  },
+                  "summary": {
+                    "type": "string",
+                    "example": "Hello this is the Summary"
+                  },
+                  "article": {
+                    "type": "string",
+                    "example": "Hello the article full will be placed here."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/300/api/user/login": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Admin - User Login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "username": "ndahimana",
+                  "passowrd": "1234"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/301/api/blog/": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get all blogs",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/301/api/project/ruyefghuydfiuhiuhiuhdiuhfiuh": {
+      "delete": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Delete Project",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/301/api/comment/djhvkfuagiu": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Send comment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "firstname": "dofjeroi",
+                  "lastname": "fgiuoeuogher",
+                  "email": "fdiuvhjfueih@dsvsd.sd",
+                  "comment": "wioefjwiowfef",
+                  "blogId": "fiowjihwef"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/blog/66294075ddd72b5c7a557778": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Post comment",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/301/api/comment/dfggre": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get Blog Comments",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/301/api/message": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get messages",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
