@@ -29,8 +29,28 @@ const getBlogById = async (id: string) => {
 
 // Delete blog by ID
 const deleteBlogById = async (id: string) => {
-  return await Blog.findOneAndDelete({_id: id})?true:false;
+  return (await Blog.findOneAndDelete({ _id: id })) ? true : false;
 };
 
-export default { postBlog, getBlogs, getBlogById,deleteBlogById };
-    
+// Update blog by ID a
+const updateBlogById = async (id: string, updatedData: any): Promise<any> => {
+  try {
+    // Find the blog document by ID and update it with the new data
+    const updatedBlog = await Blog.findByIdAndUpdate(id, updatedData, {
+      new: true, // Return the updated document
+      runValidators: true, // Run validators to ensure data is updated correctly
+    });
+
+    return updatedBlog;
+  } catch (error) {
+    throw new Error("Error updating blog in the database: ");
+  }
+};
+
+export default {
+  postBlog,
+  getBlogs,
+  getBlogById,
+  deleteBlogById,
+  updateBlogById,
+};

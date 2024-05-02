@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/29</span>
+                <span class='fraction'>0/24</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/29</span>
+                <span class='fraction'>0/24</span>
             </div>
         
             
@@ -174,8 +174,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -186,7 +184,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,12 +191,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -268,32 +268,32 @@ const postMessage = <span class="cstat-no" title="statement not covered" ><span 
     });
 &nbsp;
     // Define the main function
-    const main = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
-      const transporter = <span class="cstat-no" title="statement not covered" >nodemailer.createTransport({</span>
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false, // Use `true` for port 465, `false` for all other ports
-        auth: {
-          user: "ndahimana154@gmail.com",
-          pass: "8259 8873",
-        },
-      });
+    // const main = async () =&gt; {
+    //   const transporter = nodemailer.createTransport({
+    //     host: "smtp.gmail.com",
+    //     port: 587,
+    //     secure: false, // Use `true` for port 465, `false` for all other ports
+    //     auth: {
+    //       user: "ndahimana154@gmail.com",
+    //       pass: "8259 8873",
+    //     },
+    //   });
 &nbsp;
-      // send mail with defined transport object
-      const info = <span class="cstat-no" title="statement not covered" >await transporter.sendMail({</span>
-        from: '"Ndahimana Bonheur" &lt;ndahimana154@gmail.com&gt;', // sender address
-        to: email, // list of receivers
-        subject: "Thank you", // Subject line
-        text: `Hello ${firstname} thank you for contacting us.`, // plain text body
-        // html: "&lt;b&gt;Hello world?&lt;/b&gt;", // html body
-      });
+    //   // send mail with defined transport object
+    //   const info = await transporter.sendMail({
+    //     from: '"Ndahimana Bonheur" &lt;ndahimana154@gmail.com&gt;', // sender address
+    //     to: email, // list of receivers
+    //     subject: "Thank you", // Subject line
+    //     text: `Hello ${firstname} thank you for contacting us.`, // plain text body
+    //     // html: "&lt;b&gt;Hello world?&lt;/b&gt;", // html body
+    //   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      console.log("Message sent: %s", info.messageId);</span>
+    //   console.log("Message sent: %s", info.messageId);
       // Message sent: &lt;d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email&gt;
-    };
+    // };
 &nbsp;
     // Call the main function
-<span class="cstat-no" title="statement not covered" >    await main();</span>
+    // await main();
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    res.status(201).json({</span>
       success: true,
@@ -352,7 +352,7 @@ export default { postMessage, getBrandMessages, deleteBrandMessage };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-04-29T08:06:04.911Z
+                at 2024-05-02T20:18:52.270Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

@@ -9,11 +9,14 @@ const blogsRouter = express.Router();
 // Post blog
 blogsRouter.post("/",multer.single('file'), blogsController.postBlog);
 // Get blogs
+
 blogsRouter.get("/", blogsController.getBlogs);
 // Get a single blog
 blogsRouter.get("/:id", blogsController.getBlogById);
 
 // Delete blog
 blogsRouter.delete("/:id",blogsController.deleteBlog);
+// Delete blog
+blogsRouter.put("/:id",blogsController.deleteBlog);
 
 export default blogsRouter;
