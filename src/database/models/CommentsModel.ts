@@ -25,6 +25,11 @@ const CommentsSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  status: {
+    type: String,
+    required: false,
+    default: "Unreviewed",
+  },
 });
 
 const CommentModal = mongoose.model("Comments", CommentsSchema);
