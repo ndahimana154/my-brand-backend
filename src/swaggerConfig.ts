@@ -10,7 +10,6 @@ const options = {
             description: 'MyBrand API',
             contact: {
                 name: 'Ndahimana Bonheur',
-                // email: 'ndagijimanapazo64@gmail.com',
             }
         },
         servers: [
@@ -34,7 +33,7 @@ const options = {
             },
         },
     },
-    apis: ['./src/routers/*.ts'],
+    apis: ['./src/routes/*.ts'],
 }
 
 const specs = swaggerJsdoc(options)
