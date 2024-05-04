@@ -71,12 +71,13 @@ const deleteProject = async (req: Request, res: Response) => {
   }
   try {
     const isDeleted = await projectsRepository.deleteProjectFx(id);
+  //  console.log(isDeleted)
     if (!isDeleted) {
-      throw new Error("Can't delete task");
+      throw new Error("Can't delete Project");
     } else {
       res.status(200).json({
         success: true,
-        message: `Task deleted successfully.`,
+        message: `Project deleted successfully.`,
       });
     }
   } catch (error) {
