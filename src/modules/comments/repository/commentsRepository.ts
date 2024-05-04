@@ -18,7 +18,24 @@ const getComments = async (blog: string) => {
     return CommentModal.find({ blogId: blog });
   }
 };
+const getRevComments = async (blog: string) => {
+  blogId: {
+    return CommentModal.find({ blogId: blog, status: "Reviewed" });
+  }
+};
+
+const reviewComment = async (comment: string) => {
+  comment: {
+    return CommentModal.findByIdAndUpdate(
+      { _id: comment },
+      { status: "Reviewed" },
+      { new: true }
+    );
+  }
+};
 export default {
   postCommentFx,
   getComments,
+  getRevComments,
+  reviewComment,
 };

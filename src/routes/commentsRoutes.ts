@@ -109,5 +109,10 @@ const commentsRoute = express.Router();
 commentsRoute.post("/:blogId", commentsController.postBlogComment);
 // Get blog comments 
 commentsRoute.get("/:blogId", commentsController.getBlogComments);
+// Get Reviwed Blog Comments
+commentsRoute.get("/reviewed/:blogId", commentsController.getReviewedBlogComments);
+
+// Reviiw the comment
+commentsRoute.put("/review/:commentId", commentsController.reviewComment);
 
 export default commentsRoute;
