@@ -13,9 +13,9 @@ const options = {
             }
         },
         servers: [
-            // {
-            //     url: 'https://my-brand-backend-server.onrender.com'
-            // },
+            {
+                url: 'https://my-brand-backend-server.onrender.com/api'
+            },
             {
                 url: 'http://localhost:3301/api/'
             },

@@ -248,10 +248,11 @@ import uploadBlog from "../middlewares/uploadBlog"
 import blogsController from "../modules/blogs/controller/blogController";
 import uploadImages from "../middlewares/uploadBlog";
 import multer from "../middlewares/multerSetup";
+import verifyToken from "../middlewares/verifyToken";
 const blogsRouter = express.Router();  
 
 // Post blog
-blogsRouter.post("/",multer.single('file'), blogsController.postBlog);
+blogsRouter.post("/",verifyToken, multer.single('file'), blogsController.postBlog);
 // Get blogs
 
 blogsRouter.get("/", blogsController.getBlogs);
