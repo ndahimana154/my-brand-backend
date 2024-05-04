@@ -100,7 +100,6 @@ const deleteBlog = async (req: Request, res: Response): Promise<void> => {
     });
   }
 };
-// Update blog
 // Update a blog
 const updateBlog = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
