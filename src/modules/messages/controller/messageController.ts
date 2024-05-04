@@ -14,34 +14,29 @@ const postMessage = async (req: Request, res: Response) => {
       message,
     });
 
-    // Define the main function
-    // const main = async () => {
-    //   const transporter = nodemailer.createTransport({
-    //     host: "smtp.gmail.com",
-    //     port: 587,
-    //     secure: false, // Use `true` for port 465, `false` for all other ports
-    //     auth: {
-    //       user: "ndahimana154@gmail.com",
-    //       pass: "8259 8873",
-    //     },
-    //   });
+    // Create transporter for sending email
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // Use `true` for port 465, `false` for all other ports
+      auth: {
+        user: "ndahimana154@gmail.com",
+        pass: "mjkp fkrs exei tgsq",
+      },
+    });
 
-    //   // send mail with defined transport object
-    //   const info = await transporter.sendMail({
-    //     from: '"Ndahimana Bonheur" <ndahimana154@gmail.com>', // sender address
-    //     to: email, // list of receivers
-    //     subject: "Thank you", // Subject line
-    //     text: `Hello ${firstname} thank you for contacting us.`, // plain text body
-    //     // html: "<b>Hello world?</b>", // html body
-    //   });
+    // Configure email options
+    const mailOptions = {
+      from: '"Ndahimana Bonheur" <ndahimana154@gmail.com>', // Sender address
+      to: email, // Recipient
+      subject: "Thank you for contacting Ndahimana Bonheur", // Subject line
+      text: `Hello ${firstname} ${lastname},\n\nThank you for reaching out. We have received your message and will get back to you as soon as possible.\n\nBest regards,\nNdahimana Bonheur`, // Plain text body
+    };
 
-    //   console.log("Message sent: %s", info.messageId);
-      // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
-    // };
+    // Send email
+    await transporter.sendMail(mailOptions);
 
-    // Call the main function
-    // await main();
-
+    // Send response
     res.status(201).json({
       success: true,
       message: "Message sent successfully",
