@@ -253,8 +253,7 @@
  *       '500':
  *         description: Internal server error
  */
-
-import express from "express";
+import express from 'express'
 import uploadBlog from "../middlewares/uploadBlog"
 import blogsController from "../modules/blogs/controller/blogController";
 import uploadImages from "../middlewares/uploadBlog";

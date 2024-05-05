@@ -29,7 +29,6 @@ const options = {
           name: "Authorization",
           scheme: "bearer",
           in: "header",
-          value: "YOUR_TOKEN_HERE",
           description: 'JWT Authorization header. Example: "{token}"',
         },
       },
