@@ -4,7 +4,7 @@
  *   name: Comments
  *   description: Comment management
  * 
- * /comments/{blogId}:
+ * /comment/{blogId}:
  *   post:
  *     summary: Create a new comment for a blog
  *     parameters:

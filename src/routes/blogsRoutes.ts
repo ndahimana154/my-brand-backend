@@ -4,9 +4,17 @@
  *   name: Blogs
  *   description: Blog management
  * 
+ * securityDefinitions:
+ *   jwt_auth:
+ *     type: apiKey
+ *     name: Authorization
+ *     in: header
+ * 
  * /blog/:
  *   post:
  *     summary: Create a new blog
+ *     security:
+ *       - jwt_auth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -183,6 +191,8 @@
  *         description: ID of the blog to update
  *         schema:
  *           type: string
+ *     security:
+ *       - jwt_auth: []
  *     requestBody:
  *       content:
  *         multipart/form-data:
@@ -243,6 +253,7 @@
  *       '500':
  *         description: Internal server error
  */
+
 import express from "express";
 import uploadBlog from "../middlewares/uploadBlog"
 import blogsController from "../modules/blogs/controller/blogController";

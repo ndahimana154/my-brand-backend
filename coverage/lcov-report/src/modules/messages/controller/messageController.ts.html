@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55.17% </span>
+                <span class="strong">60.6% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/29</span>
+                <span class='fraction'>20/33</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.84% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/26</span>
+                <span class='fraction'>18/30</span>
             </div>
         
             
@@ -152,13 +152,8 @@
 <a name='L87'></a><a href='#L87'>87</a>
 <a name='L88'></a><a href='#L88'>88</a>
 <a name='L89'></a><a href='#L89'>89</a>
-<a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L90'></a><a href='#L90'>90</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -174,6 +169,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -184,6 +180,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -191,14 +188,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -267,34 +257,29 @@ const postMessage = async (req: Request, res: Response) =&gt; {
       message,
     });
 &nbsp;
-    // Define the main function
-    // const main = async () =&gt; {
-    //   const transporter = nodemailer.createTransport({
-    //     host: "smtp.gmail.com",
-    //     port: 587,
-    //     secure: false, // Use `true` for port 465, `false` for all other ports
-    //     auth: {
-    //       user: "ndahimana154@gmail.com",
-    //       pass: "8259 8873",
-    //     },
-    //   });
+    // Create transporter for sending email
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // Use `true` for port 465, `false` for all other ports
+      auth: {
+        user: "ndahimana154@gmail.com",
+        pass: "mjkp fkrs exei tgsq",
+      },
+    });
 &nbsp;
-    //   // send mail with defined transport object
-    //   const info = await transporter.sendMail({
-    //     from: '"Ndahimana Bonheur" &lt;ndahimana154@gmail.com&gt;', // sender address
-    //     to: email, // list of receivers
-    //     subject: "Thank you", // Subject line
-    //     text: `Hello ${firstname} thank you for contacting us.`, // plain text body
-    //     // html: "&lt;b&gt;Hello world?&lt;/b&gt;", // html body
-    //   });
+    // Configure email options
+    const mailOptions = {
+      from: '"Ndahimana Bonheur" &lt;ndahimana154@gmail.com&gt;', // Sender address
+      to: email, // Recipient
+      subject: "Thank you for contacting Ndahimana Bonheur", // Subject line
+      text: `Hello ${firstname} ${lastname},\n\nThank you for reaching out. We have received your message and will get back to you as soon as possible.\n\nBest regards,\nNdahimana Bonheur`, // Plain text body
+    };
 &nbsp;
-    //   console.log("Message sent: %s", info.messageId);
-      // Message sent: &lt;d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email&gt;
-    // };
+    // Send email
+    await transporter.sendMail(mailOptions);
 &nbsp;
-    // Call the main function
-    // await main();
-&nbsp;
+    // Send response
     res.status(201).json({
       success: true,
       message: "Message sent successfully",
@@ -352,7 +337,7 @@ export default { postMessage, getBrandMessages, deleteBrandMessage };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-05-04T18:40:42.345Z
+                at 2024-05-05T15:08:55.391Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

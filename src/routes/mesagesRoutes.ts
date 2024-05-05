@@ -3,8 +3,8 @@
  * tags:
  *   name: Messages
  *   description: Message management
- * 
- * /messages:
+ *
+ * /message:
  *   post:
  *     summary: Post a message
  *     requestBody:
@@ -47,7 +47,7 @@
  *         description: Bad request. Message not provided.
  *       '500':
  *         description: Internal server error
- * 
+ *
  *   get:
  *     summary: Get all brand messages
  *     responses:
@@ -77,8 +77,8 @@
  *                         description: The date when the message was created
  *       '500':
  *         description: Internal server error
- * 
- * /messages/{id}:
+ *
+ * /message/{id}:
  *   delete:
  *     summary: Delete a brand message by ID
  *     parameters:
@@ -96,7 +96,6 @@
  *       '500':
  *         description: Internal server error
  */
-
 
 import express from "express";
 import messageController from "../modules/messages/controller/messageController";

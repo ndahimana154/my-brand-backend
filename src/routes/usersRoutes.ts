@@ -4,7 +4,7 @@
  *   name: Users
  *   description: User management
  * 
- * /users/new:
+ * /user/new:
  *   post:
  *     summary: Register a new user
  *     requestBody:
@@ -52,7 +52,7 @@
  *       '500':
  *         description: Internal server error
  * 
- * /users/login:
+ * /user/login:
  *   post:
  *     summary: Login user
  *     requestBody:
