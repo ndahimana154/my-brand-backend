@@ -14,7 +14,7 @@
  *           schema:
  *             type: object
  *             properties:
- *               cover:
+ *               file:
  *                 type: string
  *                 format: binary
  *                 description: Cover image for the blog
@@ -143,7 +143,7 @@
  *                     summary:
  *                       type: string
  *                       description: The blog summary
- *                     cover:
+ *                     file:
  *                       type: string
  *                       description: The blog cover image URL
  *                     article:
@@ -189,7 +189,7 @@
  *           schema:
  *             type: object
  *             properties:
- *               cover:
+ *               file:
  *                 type: string
  *                 format: binary
  *                 description: Cover image for the blog
