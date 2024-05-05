@@ -4,20 +4,19 @@ import projectsRepository from "../repository/projectsRepository";
 import uploadImages from "../../../middlewares/uploadBlog";
 import asyncHandler from "express-async-handler";
 
-
 // Post project
 const postProject = async (req: Request, res: Response) => {
   try {
-    if(!req.file) {
-     return  res.status(400).json({
-        success:false,
-        message: "Please upload an image"
-    });
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Please upload an image",
+      });
     }
     const result = await uploadImages(req.file);
-    console.log(result)
+    console.log(result);
     const { title, description, startTime, endTime, externalLink } = req.body;
-    const image = result?.secure_url
+    const image = result?.secure_url;
     const newProject = await projectsRepository.newProject({
       title,
       description,
@@ -63,28 +62,29 @@ const getAllProjects = async (req: Request, res: Response) => {
 // Delete project
 const deleteProject = async (req: Request, res: Response) => {
   const { id } = req.params;
+
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(400).json({
+    return res.status(400).json({
       success: false,
-      message: `Invalid Projct ID`,
+      message: `Invalid Project ID`,
     });
   }
+
   try {
     const isDeleted = await projectsRepository.deleteProjectFx(id);
-  //  console.log(isDeleted)
     if (!isDeleted) {
-      throw new Error("Can't delete Project");
+      throw new Error("Project not found or already deleted.");
     } else {
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         message: `Project deleted successfully.`,
       });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
-      message: `An error occured, ${error}`,
+      message: `An error occurred: ${error}`,
     });
   }
 };

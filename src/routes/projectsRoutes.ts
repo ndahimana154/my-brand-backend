@@ -14,16 +14,26 @@
  *           schema:
  *             type: object
  *             properties:
- *               file:
+ *               image:
  *                 type: string
  *                 format: binary
  *                 description: Project image
- *               name:
- *                 type: string
- *                 description: Project name
  *               description:
  *                 type: string
+ *                 description: Description
+ *               title:
+ *                 type: string
+ *                 description: Project title
+ *               startTime:
+ *                 type: string
+ *                 description: Project name
+ *               endTime:
+ *                 type: string
  *                 description: Project description
+ *               externalLink:
+ *                 type: string
+ *                 description: Project name
+ *              
  *     responses:
  *       '201':
  *         description: Project created successfully

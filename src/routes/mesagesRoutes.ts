@@ -17,6 +17,15 @@
  *               message:
  *                 type: string
  *                 description: The message content
+ *               lastname:
+ *                 type: string
+ *                 description: The message content
+ *               firstname:
+ *                 type: string
+ *                 description: The message content
+ *               email:
+ *                 type: string
+ *                 description: The message content
  *     responses:
  *       '201':
  *         description: Message posted successfully

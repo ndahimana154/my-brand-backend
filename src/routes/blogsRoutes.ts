@@ -182,7 +182,7 @@
  *       '500':
  *         description: Internal server error
  * 
- *   put:
+ *   patch:
  *     summary: Update a blog by ID
  *     parameters:
  *       - in: path
@@ -273,6 +273,6 @@ blogsRouter.get("/:id", blogsController.getBlogById);
 // Delete blog
 blogsRouter.delete("/:id",blogsController.deleteBlog);
 // Delete blog
-blogsRouter.put("/:id",blogsController.deleteBlog);
+blogsRouter.patch("/:id",blogsController.deleteBlog);
 
 export default blogsRouter;

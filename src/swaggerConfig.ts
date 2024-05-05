@@ -16,10 +16,10 @@ const options = {
     },
     servers: [
       {
-        url: "https://my-brand-backend-server.onrender.com/api",
+        url: "http://localhost:3301/api/",
       },
       {
-        url: "http://localhost:3301/api/",
+        url: "https://my-brand-backend-server.onrender.com/api",
       },
     ],
     components: {
