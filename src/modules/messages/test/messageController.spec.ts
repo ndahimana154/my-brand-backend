@@ -30,7 +30,7 @@ describe("Message Controller", () => {
 
   describe("Get Brand Messages", () => {
     it("Should get all brand messages", async () => {
-      const res = await router().get("/api/messages");
+      const res = await router().get("/api/message");
       expect(res).to.have.status(200);
       expect(res.body).to.be.a("object");
       expect(res.body).to.have.property("success", true);
@@ -53,7 +53,7 @@ describe("Message Controller", () => {
     });
 
     it("Should return 'Message not found' for non-existing message ID", async () => {
-      const nonExistingId = "non_existing_id";
+      const nonExistingId = "662e106b276ab149dcd1f9f0";
       const res = await router().delete(`/api/message/${nonExistingId}`);
       expect(res).to.have.status(404);
       expect(res.body).to.have.property("success", false);

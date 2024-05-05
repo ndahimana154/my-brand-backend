@@ -95,7 +95,7 @@ describe("Blog Controller", () => {
     });
 
     it("Should return 'Invalid Blog ID' for invalid ID", async () => {
-      const res = await router().delete(`/api/blog/invalidID`);
+      const res = await router().delete(`/api/blog/662e106b276ab149dcd1f9f1`);
       expect(res).to.have.status(404);
       expect(res.body).to.have.property("success", false);
       expect(res.body).to.have.property("message", "Invalid Blog ID");
