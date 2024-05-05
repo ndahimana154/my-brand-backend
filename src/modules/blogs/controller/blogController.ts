@@ -105,33 +105,36 @@ const deleteBlog = async (req: Request, res: Response): Promise<void> => {
 };
 // Update a blog
 const updateBlog = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(404).json({ success: false, message: "Invalid Blog ID" });
-    return; // Return here to exit the function early
-  }
   try {
+    if (!req.file) {
+      res.status(400).json({
+        message: "Please upload an image"
+      });
+      return;
+    }
+    const result = await uploadImages(req.file);
+    const id: string = req.params.id;
+    const updatedBlogData = {
+      title: req.body.title,
+      summary: req.body.summary,
+      article: req.body.article,
+      cover: result?.secure_url,
+    };
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      res.status(404).json({ success: false, message: "Invalid Blog ID" });
+      return; // Return here to exit the function early
+    }
     // Check if the blog exists
     const existingBlog = await blogRepository.getBlogById(id);
     if (!existingBlog) {
       res.status(404).json({ success: false, message: "Blog not found" });
       return; // Return here to exit the function early
     }
-
-    // Update the blog data
-    const updatedBlogData = {
-      title: req.body.title || existingBlog.title,
-      summary: req.body.summary || existingBlog.summary,
-      cover: req.body.cover || existingBlog.cover,
-      article: req.body.article || existingBlog.article,
-    };
-
-    // Call the repository function to update the blog
     const updatedBlog = await blogRepository.updateBlogById(
       id,
       updatedBlogData
     );
-
     res.status(200).json({ success: true, data: updatedBlog });
   } catch (error) {
     console.error(error);

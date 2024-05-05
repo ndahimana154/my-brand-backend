@@ -2,29 +2,18 @@
 import Blog from "../../../database/models/BlogsModel";
 
 // Post blog
-const postBlog = async (blogData: {
-  title: string;
-  summary: string;
-  cover: string;
-  article: string;
-}) => {
-  // Create a new blog
-  const newBlog = new Blog(blogData);
-
-  // Save the blog to the database
-  await newBlog.save();
-
-  return newBlog;
+const postBlog = async(body:any) => {
+  return await Blog.create(body);
 };
 
 // Get all blogs
 const getBlogs = async () => {
-  return Blog.find().sort({ postedAt: -1 });
+  return await Blog.find();
 };
 
 // Get single blog
 const getBlogById = async (id: string) => {
-  return Blog.findById(id); // Pass the ID directly as a string
+  return await Blog.findById(id); // Pass the ID directly as a string
 };
 
 // Delete blog by ID
@@ -33,18 +22,8 @@ const deleteBlogById = async (id: string) => {
 };
 
 // Update blog by ID a
-const updateBlogById = async (id: string, updatedData: any): Promise<any> => {
-  try {
-    // Find the blog document by ID and update it with the new data
-    const updatedBlog = await Blog.findByIdAndUpdate(id, updatedData, {
-      new: true, // Return the updated document
-      runValidators: true, // Run validators to ensure data is updated correctly
-    });
-
-    return updatedBlog;
-  } catch (error) {
-    throw new Error("Error updating blog in the database: ");
-  }
+const updateBlogById = async (id: string, updatedData: any)=> {
+ return await Blog.findOneAndUpdate({ _id: id}, updatedData,{new:true});
 };
 
 export default {
