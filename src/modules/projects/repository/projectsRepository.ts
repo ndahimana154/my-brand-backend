@@ -23,10 +23,20 @@ const getProjects = async () => {
 
 // Function to delete projects
 const deleteProjectFx = async (id:string) => {
-  return await projectModal.findOneAndDelete({ _id: id })?true:false;
+  try {
+    const deleteVar = await projectModal.findByIdAndDelete(id);
+    if (deleteVar) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    throw new Error(`Error deleting project: ${error}`);
+  }
 };
 
 export default {
   newProject,
-  getProjects,deleteProjectFx
+  getProjects,
+  deleteProjectFx,
 };

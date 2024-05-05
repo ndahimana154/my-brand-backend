@@ -19,7 +19,7 @@
     "exclude": [
       "src/_tests_/**/*.*",
       "src/database/**/*.*",
-      "src/modules/*"
+      "src/middlewares"
     ],
     "reporter": [
       "html",
@@ -68,10 +68,12 @@
     "@types/cors": "^2.8.17",
     "@types/dotenv": "^8.2.0",
     "@types/mocha": "^10.0.6",
+    "@types/mongoose": "^5.11.97",
     "@types/multer": "^1.4.11",
     "@types/nodemailer": "^6.4.14",
     "@types/sinon": "^17.0.3",
-    "chai": "^5.1.0",
+    "chai": "^4.0.0",
+    "chai-http": "^4.4.0",
     "mocha": "^10.4.0",
     "nyc": "^15.1.0",
     "ts-node": "^10.9.2"

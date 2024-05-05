@@ -7,11 +7,13 @@ import uploadImages from "../../../middlewares/uploadBlog";
 import asyncHandler from "express-async-handler";
 
 const postBlog = asyncHandler(
-  async (req: Request, res: Response): Promise<void> => {
+  async (req: Request, res: Response): Promise<any> => {
     // TODO: Get the project detail from req.body
     try {
+      console.log("Before file");
+      console.log(req.body)
       if (!req.file) {
-        res.status(400).json({
+        return res.status(400).json({
           success: false,
           message: "Please upload an image",
         });
@@ -32,6 +34,7 @@ const postBlog = asyncHandler(
       });
 
       console.log(blogData);
+      console.log("After file");
     } catch (error) {
       res.status(500).json({
         message: "Internal server error",
@@ -100,7 +103,6 @@ const deleteBlog = async (req: Request, res: Response): Promise<void> => {
     });
   }
 };
-// Update blog
 // Update a blog
 const updateBlog = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;

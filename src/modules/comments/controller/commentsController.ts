@@ -38,7 +38,40 @@ const getBlogComments = async (req: Request, res: Response) => {
       .json({ success: false, message: "Error fetching comments" });
   }
 };
+
+const getReviewedBlogComments = async (req: Request, res: Response) => {
+  const { blogId } = req.params;
+  try {
+    const blogComments = await commentsRepository.getRevComments(blogId);
+    res
+      .status(200)
+      .json({ success: true, message: "Comments fetched", blogComments });
+  } catch (error) {
+    console.error("Error fetching comments", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching comments" });
+  }
+};
+
+const reviewComment = async (req: Request, res: Response) => {
+  const { commentId } = req.params;
+
+  try {
+    const reviewedComment = await commentsRepository.reviewComment(commentId);
+    res
+      .status(200)
+      .json({ success: true, message: "Comments reviewed", reviewedComment });
+  } catch (error) {
+    console.error("Error reviewing comments", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Error reviewing comment" });
+  }
+};
 export default {
   postBlogComment,
   getBlogComments,
+  getReviewedBlogComments,
+  reviewComment,
 };

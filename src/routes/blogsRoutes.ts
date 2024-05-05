@@ -4,9 +4,17 @@
  *   name: Blogs
  *   description: Blog management
  * 
+ * securityDefinitions:
+ *   jwt_auth:
+ *     type: apiKey
+ *     name: Authorization
+ *     in: header
+ * 
  * /blog/:
  *   post:
  *     summary: Create a new blog
+ *     security:
+ *       - jwt_auth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -174,7 +182,7 @@
  *       '500':
  *         description: Internal server error
  * 
- *   put:
+ *   patch:
  *     summary: Update a blog by ID
  *     parameters:
  *       - in: path
@@ -183,6 +191,8 @@
  *         description: ID of the blog to update
  *         schema:
  *           type: string
+ *     security:
+ *       - jwt_auth: []
  *     requestBody:
  *       content:
  *         multipart/form-data:
@@ -243,15 +253,17 @@
  *       '500':
  *         description: Internal server error
  */
+
 import express from "express";
 import uploadBlog from "../middlewares/uploadBlog"
 import blogsController from "../modules/blogs/controller/blogController";
 import uploadImages from "../middlewares/uploadBlog";
 import multer from "../middlewares/multerSetup";
+import verifyToken from "../middlewares/verifyToken";
 const blogsRouter = express.Router();  
 
 // Post blog
-blogsRouter.post("/",multer.single('file'), blogsController.postBlog);
+blogsRouter.post("/",verifyToken, multer.single('file'), blogsController.postBlog);
 // Get blogs
 
 blogsRouter.get("/", blogsController.getBlogs);
@@ -261,6 +273,6 @@ blogsRouter.get("/:id", blogsController.getBlogById);
 // Delete blog
 blogsRouter.delete("/:id",blogsController.deleteBlog);
 // Delete blog
-blogsRouter.put("/:id",blogsController.deleteBlog);
+blogsRouter.patch("/:id",blogsController.deleteBlog);
 
 export default blogsRouter;
