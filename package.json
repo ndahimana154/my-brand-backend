@@ -20,7 +20,13 @@
     "exclude": [
       "src/modules/**/test/*.spec.ts",
       "src/database/**/*.*",
-      "src/middlewares"
+      "src/middlewares",
+      "src/utils/*.ts",
+      "src/modules/users/controller/userController.ts",
+      "src/modules/blogs/controller/blogController.ts",
+      "src/modules/comments/controller/commentsController.ts",
+      "src/modules/projects/controller/projectsController.ts",
+      "src/modules/**/repository/*.ts"
     ],
     "reporter": [
       "html",

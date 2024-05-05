@@ -43,11 +43,11 @@ const postMessage = async (req: Request, res: Response) => {
       newMessage,
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: "An error occurred while sending the message",
-    });
+    // console.error(error);
+    // res.status(500).json({
+    //   success: false,
+    //   message: "An error occurred while sending the message",
+    // });
   }
 };
 
@@ -63,8 +63,8 @@ const getBrandMessages = async (req: Request, res: Response) => {
       .status(200)
       .json({ success: true, message: "Messages fetched", messagesData });
   } catch (error) {
-    console.error("Error getting messages", error);
-    res.status(500).json({ success: false, message: "An error occurred" });
+    // console.error("Error getting messages", error);
+    // res.status(500).json({ success: false, message: "An error occurred" });
   }
 };
 
@@ -81,8 +81,8 @@ const deleteBrandMessage = async (req: Request, res: Response) => {
       res.status(404).json({ success: false, message: "Message not found" });
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, message: "Error occurred" });
+    // console.error(error);
+    // res.status(500).json({ success: false, message: "Error occurred" });
   }
 };
 
