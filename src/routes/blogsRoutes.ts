@@ -3,13 +3,13 @@
  * tags:
  *   name: Blogs
  *   description: Blog management
- * 
- * securityDefinitions:
+ *
+ * securitySchemes:
  *   jwt_auth:
  *     type: apiKey
  *     name: Authorization
  *     in: header
- * 
+ *
  * /blog/:
  *   post:
  *     summary: Create a new blog
@@ -78,7 +78,7 @@
  *         description: Bad request. Image not provided.
  *       '500':
  *         description: Internal server error
- * 
+ *
  *   get:
  *     summary: Get all blogs
  *     responses:
@@ -117,7 +117,7 @@
  *                         description: The date when the blog was posted
  *       '500':
  *         description: Internal server error
- * 
+ *
  * /blog/{id}:
  *   get:
  *     summary: Get a blog by ID
@@ -164,7 +164,7 @@
  *         description: Blog not found
  *       '500':
  *         description: Internal server error
- *   
+ *
  *   delete:
  *     summary: Delete a blog by ID
  *     parameters:
@@ -181,7 +181,7 @@
  *         description: Blog not found
  *       '500':
  *         description: Internal server error
- * 
+ *
  *   put:
  *     summary: Update a blog by ID
  *     parameters:
@@ -191,8 +191,7 @@
  *         description: ID of the blog to update
  *         schema:
  *           type: string
- *     security:
- *       - jwt_auth: []
+ *
  *     requestBody:
  *       content:
  *         multipart/form-data:
@@ -253,16 +252,21 @@
  *       '500':
  *         description: Internal server error
  */
-import express from 'express'
-import uploadBlog from "../middlewares/uploadBlog"
+import express from "express";
+import uploadBlog from "../middlewares/uploadBlog";
 import blogsController from "../modules/blogs/controller/blogController";
 import uploadImages from "../middlewares/uploadBlog";
 import multer from "../middlewares/multerSetup";
 import verifyToken from "../middlewares/verifyToken";
-const blogsRouter = express.Router();  
+const blogsRouter = express.Router();
 
 // Post blog
-blogsRouter.post("/",verifyToken, multer.single('file'), blogsController.postBlog);
+blogsRouter.post(
+  "/",
+  verifyToken,
+  multer.single("file"),
+  blogsController.postBlog
+);
 // Get blogs
 
 blogsRouter.get("/", blogsController.getBlogs);
@@ -270,8 +274,8 @@ blogsRouter.get("/", blogsController.getBlogs);
 blogsRouter.get("/:id", blogsController.getBlogById);
 
 // Delete blog
-blogsRouter.delete("/:id",blogsController.deleteBlog);
+blogsRouter.delete("/:id", blogsController.deleteBlog);
 // Delete blog
-blogsRouter.put("/:id",multer.single('file'),blogsController.updateBlog);
+blogsRouter.put("/:id", multer.single("file"), blogsController.updateBlog);
 
 export default blogsRouter;
