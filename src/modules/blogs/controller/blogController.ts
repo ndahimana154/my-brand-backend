@@ -106,19 +106,12 @@ const deleteBlog = async (req: Request, res: Response): Promise<void> => {
 // Update a blog
 const updateBlog = async (req: Request, res: Response): Promise<void> => {
   try {
-    if (!req.file) {
-      res.status(400).json({
-        message: "Please upload an image"
-      });
-      return;
-    }
-    const result = await uploadImages(req.file);
+    // const result = await uploadImages(req.file);
     const id: string = req.params.id;
     const updatedBlogData = {
       title: req.body.title,
       summary: req.body.summary,
       article: req.body.article,
-      cover: result?.secure_url,
     };
 
     if (!mongoose.Types.ObjectId.isValid(id)) {

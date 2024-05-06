@@ -275,7 +275,7 @@ blogsRouter.get("/:id", blogsController.getBlogById);
 
 // Delete blog
 blogsRouter.delete("/:id", blogsController.deleteBlog);
-// Delete blog
-blogsRouter.put("/:id", multer.single("file"), blogsController.updateBlog);
+// Update blog
+blogsRouter.patch("/:id", blogsController.updateBlog);
 
 export default blogsRouter;
