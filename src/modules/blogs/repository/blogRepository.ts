@@ -8,7 +8,7 @@ const postBlog = async(body:any) => {
 
 // Get all blogs
 const getBlogs = async () => {
-  return await Blog.find();
+  return await Blog.find().sort({postedAt: -1});
 };
 
 // Get single blog
