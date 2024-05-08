@@ -19,7 +19,9 @@
     "exclude": [
       "src/_tests_/**/*.*",
       "src/database/**/*.*",
-      "src/middlewares"
+      "src/middlewares/*",
+      "src/modules/blogs/*",
+      "src/modules/projects/*"
     ],
     "reporter": [
       "html",
